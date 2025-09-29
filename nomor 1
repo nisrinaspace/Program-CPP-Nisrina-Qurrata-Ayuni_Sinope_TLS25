@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int reversenumber(int x) {
+    int sign = (x < 0) ? -1 : 1;
+    x = abs(x);
+    int result = 0;
+    while (x > 0) {
+        int digit = x % 10;
+        result = result * 10 + digit;
+        x /= 10;
+    }
+    return sign * result;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cout << "Enter the length of the array: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter the elements of the array:" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "Index " << i << ": ";
+        cin >> arr[i];
+    }
+    cout << endl;
+
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            sum += reversenumber(arr[i]);
+        } else {
+            sum += arr[i];
+        }
+    }
+
+    cout << "Reversed numbers at even indices and original numbers at odd indices:" << endl;
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            cout << reversenumber(arr[i]) << " ";
+        } else {
+            cout << arr[i] << " ";
+        }
+    }
+    cout << "\n";
+
+    cout << "Sum: " << sum << endl;
+    return 0;
+}
