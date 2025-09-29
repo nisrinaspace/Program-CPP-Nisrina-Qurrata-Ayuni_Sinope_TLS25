@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int GREEN = 20, YELLOW = 3, RED = 80;
+    const int CYCLE = GREEN + YELLOW + RED; // total siklus = 103
+    const int OFFSET = 25; // supaya detik ke-45 jatuh ke awal kuning
+
+    long long t;
+    cout << "Masukkan detik: ";
+    cin >> t;
+
+    int pos = (t - OFFSET) % CYCLE;
+    if (pos < 0) pos += CYCLE; // normalisasi kalau hasil modulo negatif
+
+    string warna;
+    if (pos < GREEN) warna = "Hijau";           // 0..19
+    else if (pos < GREEN + YELLOW) warna = "Kuning"; // 20..22
+    else warna = "Merah";                       // 23..102
+
+    cout << "Detik " << t << " -> " << warna << "\n";
+    return 0;
+}
